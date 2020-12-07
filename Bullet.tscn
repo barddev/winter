@@ -4,7 +4,7 @@
 [ext_resource path="res://Bullet.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.09237, 4.03102 )
+extents = Vector2( 5.96705, 4.65435 )
 
 [node name="Bullet" type="Area2D"]
 script = ExtResource( 2 )
@@ -18,7 +18,8 @@ position = Vector2( -3.11043, 0.0393724 )
 shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( -1.7672, 1.01827 )
-scale = Vector2( 0.621018, 0.495915 )
+position = Vector2( -1.75406, 1.13652 )
+scale = Vector2( 0.706422, 0.555041 )
 rect = Rect2( -10, -10, 16, 16 )
+[connection signal="area_entered" from="." to="." method="_on_Bullet_area_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

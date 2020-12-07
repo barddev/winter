@@ -22,3 +22,8 @@ func set_direction(dir: Vector2) -> void:
 # If bullet leaves screen remove it
 func _on_VisibilityNotifier2D_screen_exited() -> void:
     queue_free()
+
+func _on_Bullet_area_entered(area: Area2D) -> void:
+    if area.has_method("handle_hit"):
+        area.handle_hit()
+        queue_free()
