@@ -20,3 +20,4 @@ func shoot():
 		emit_signal("weapon_fired", bullet_instance, end_of_gun.global_position, dir)
 		attack_cooldown.start()
 		animation_player.play("MuzzleFlash")
+		$ArtillaryFire.play()

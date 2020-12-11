@@ -11,10 +11,8 @@ func set_happiness(new_happiness: int) -> void:
 
 func add_score(s: int) -> void:
 	score += s
-	print(score)
 
 func add_happiness(h: int) -> void:
 	happiness += h
 	if happiness < 0:
 		happiness = 0
-	print(happiness)

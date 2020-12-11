@@ -13,5 +13,5 @@ func _ready():
 	pass # Replace with function body.
 
 
-func handle_out_of_bounds():
-	stats.add_happiness(1)
+func handle_out_of_bounds(a: int):
+	stats.add_happiness(a)

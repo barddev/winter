@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Artillary_single.wav-81e31c1d26f56e04943d8f907ea7132d.sample"
+
+[deps]
+
+source_file="res://assets/Artillary_single.wav"
+dest_files=[ "res://.import/Artillary_single.wav-81e31c1d26f56e04943d8f907ea7132d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
