@@ -4,7 +4,7 @@
 [ext_resource path="res://Bullet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/gun.png" type="Texture" id=3]
 [ext_resource path="res://assets/muzzleflash.png" type="Texture" id=4]
-[ext_resource path="res://assets/Artillary_single.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/artillary.wav" type="AudioStream" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MuzzleFlash"
