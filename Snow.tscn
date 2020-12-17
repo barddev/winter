@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Curve" id=1]
+min_value = -40.0
+max_value = 40.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.0726141, 34.4545 ), -608.842, -608.842, 0, 0, Vector2( 0.143154, -25.9091 ), 259.663, 259.663, 0, 0, Vector2( 0.263485, 14.0909 ), -197.744, -197.744, 0, 0, Vector2( 0.39834, -12.0909 ), 201.829, 201.829, 0, 0, Vector2( 0.547718, -1.90909 ), 116.849, 116.849, 0, 0, Vector2( 0.661826, -16.4545 ), -169.961, -169.961, 0, 0, Vector2( 0.804979, 40 ), -170.265, -170.265, 0, 0, Vector2( 0.927386, -34.6364 ), 202.947, 202.947, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[node name="CPUParticles2D2" type="CPUParticles2D"]
+amount = 300
+lifetime = 10.0
+randomness = 1.0
+emission_shape = 2
+emission_rect_extents = Vector2( 460, -320 )
+gravity = Vector2( 0, 10 )
+tangential_accel_curve = SubResource( 1 )
+scale_amount = 3.0
+scale_amount_random = 1.0
