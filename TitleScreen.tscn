@@ -1,17 +1,30 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Background.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/background.png" type="Texture" id=1]
 [ext_resource path="res://assets/Kenney Pixel Square.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/temp-title.png" type="Texture" id=3]
+[ext_resource path="res://assets/exmas_music.wav" type="AudioStream" id=4]
+[ext_resource path="res://PlayButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://CreditsButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Transition.tscn" type="PackedScene" id=7]
+[ext_resource path="res://TitleScreen.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
-size = 34
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 2 )
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="TitleScreen" type="MarginContainer"]
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 480, 320 )
+texture = ExtResource( 1 )
+
+[node name="TitleScreen" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 120
@@ -22,74 +35,60 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreen"]
 margin_left = 120.0
 margin_top = 80.0
 margin_right = 840.0
 margin_bottom = 560.0
 
-[node name="Background" parent="HBoxContainer" instance=ExtResource( 1 )]
-position = Vector2( 360, 240 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_right = 383.0
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/HBoxContainer"]
+margin_right = 451.0
 margin_bottom = 480.0
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
-margin_right = 383.0
-margin_bottom = 90.0
+[node name="TextureRect" type="TextureRect" parent="TitleScreen/HBoxContainer/VBoxContainer"]
+margin_right = 451.0
+margin_bottom = 149.0
 texture = ExtResource( 3 )
 
-[node name="MenuOptions" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_top = 94.0
-margin_right = 383.0
-margin_bottom = 424.0
+[node name="MenuOptions" type="VBoxContainer" parent="TitleScreen/HBoxContainer/VBoxContainer"]
+margin_top = 153.0
+margin_right = 451.0
+margin_bottom = 452.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = -7
+custom_constants/separation = 20
 alignment = 1
 
-[node name="Play" type="Label" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 94.0
-margin_right = 383.0
-margin_bottom = 146.0
-rect_pivot_offset = Vector2( -751.259, -156.299 )
-custom_fonts/font = SubResource( 1 )
-text = "Play"
+[node name="Play" parent="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions" instance=ExtResource( 5 )]
+margin_top = 59.0
+margin_right = 451.0
+margin_bottom = 139.0
 
-[node name="Settings" type="Label" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 139.0
-margin_right = 383.0
-margin_bottom = 191.0
-rect_pivot_offset = Vector2( -751.259, -156.299 )
-custom_fonts/font = SubResource( 1 )
-text = "Settings"
+[node name="CreditsButton" parent="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions" instance=ExtResource( 6 )]
+margin_top = 159.0
+margin_right = 451.0
+margin_bottom = 239.0
 
-[node name="Credits" type="Label" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 184.0
-margin_right = 383.0
-margin_bottom = 236.0
-rect_pivot_offset = Vector2( -751.259, -156.299 )
-custom_fonts/font = SubResource( 1 )
-text = "Credits"
-
-[node name="version" type="Label" parent="HBoxContainer/VBoxContainer"]
-margin_top = 428.0
-margin_right = 383.0
-margin_bottom = 452.0
-rect_pivot_offset = Vector2( -708.248, -254 )
-custom_fonts/font = SubResource( 2 )
-text = "v0.0.0"
-
-[node name="studio" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="studio" type="Label" parent="TitleScreen/HBoxContainer/VBoxContainer"]
 margin_top = 456.0
-margin_right = 383.0
+margin_right = 451.0
 margin_bottom = 480.0
 rect_pivot_offset = Vector2( -708.248, -254 )
-custom_fonts/font = SubResource( 2 )
-text = "Bard Development"
+custom_fonts/font = SubResource( 1 )
+text = "Bard Development v0.0.0"
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
-margin_left = 387.0
-margin_right = 387.0
+[node name="TutorialVBox" type="VBoxContainer" parent="TitleScreen/HBoxContainer"]
+margin_left = 455.0
+margin_right = 455.0
 margin_bottom = 480.0
+
+[node name="Label" type="Label" parent="TitleScreen/HBoxContainer/TutorialVBox"]
+margin_bottom = 14.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TitleScreen"]
+stream = ExtResource( 4 )
+autoplay = true
+
+[node name="Transition" parent="." instance=ExtResource( 7 )]
+[connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/Play" to="." method="_on_Play_pressed"]
+[connection signal="fade_finished" from="Transition" to="." method="_on_Transition_fade_finished"]

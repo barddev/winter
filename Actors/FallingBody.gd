@@ -1,6 +1,7 @@
 extends Area2D
 class_name FallingBody
 
+# signal obj_destroyed(position)
 
 onready var object_type = $ObjectType
 
@@ -23,4 +24,5 @@ func _on_FallingBody_area_entered(area: Area2D) -> void:
 
 # remove if the sprite leaves the screen
 func _on_VisibilityNotifier2D_screen_exited() -> void:
+	# emit_signal("obj_destroyed", global_position)
 	queue_free()

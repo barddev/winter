@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
@@ -13,6 +13,12 @@
 [ext_resource path="res://HUD.gd" type="Script" id=11]
 [ext_resource path="res://assets/Kenney Pixel Square.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://Actors/PowerUp.tscn" type="PackedScene" id=13]
+[ext_resource path="res://ExplosionManager.gd" type="Script" id=14]
+[ext_resource path="res://assets/green_light.png" type="Texture" id=15]
+[ext_resource path="res://assets/red_light.png" type="Texture" id=16]
+[ext_resource path="res://assets/blue_light.png" type="Texture" id=17]
+[ext_resource path="res://assets/yellow_light.png" type="Texture" id=18]
+[ext_resource path="res://assets/exmas_main_game.wav" type="AudioStream" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 503.159, 30.3322 )
@@ -26,12 +32,19 @@ script = ExtResource( 2 )
 
 [node name="Background" parent="." instance=ExtResource( 8 )]
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 19 )
+autoplay = true
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 480, 570 )
+position = Vector2( 479, 570 )
 
 [node name="BulletManager" type="Node2D" parent="."]
 position = Vector2( 480, 570 )
 script = ExtResource( 3 )
+
+[node name="ExplosionManager" type="Node2D" parent="."]
+script = ExtResource( 14 )
 
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource( 7 )
@@ -94,6 +107,22 @@ __meta__ = {
 
 [node name="Stats" parent="." instance=ExtResource( 9 )]
 position = Vector2( 480, 570 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 672.74, 591.809 )
+texture = ExtResource( 15 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 751.412, 591.137 )
+texture = ExtResource( 18 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 834.684, 590.919 )
+texture = ExtResource( 16 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( 921.942, 592.7 )
+texture = ExtResource( 17 )
 [connection signal="timeout" from="Spawner/ToySpawnerTimer" to="Spawner" method="_on_ToySpawnerTimer_timeout"]
 [connection signal="timeout" from="Spawner/CoalSpawnerTimer" to="Spawner" method="_on_CoalSpawnerTimer_timeout"]
 [connection signal="timeout" from="Spawner/DiffcultyTimer" to="Spawner" method="_on_DiffcultyTimer_timeout"]

@@ -8,9 +8,6 @@ func _ready() -> void:
 func shoot():
     if attack_cooldown.is_stopped() and Bullet != null:
 
-        var t := Timer.new()
-        t.set_wait_time(0.1)
-
         for _i in range(Burst):
             var bullet_instance = Bullet.instance()
             var dir = (gun_dir.global_position - end_of_gun.global_position).normalized()
